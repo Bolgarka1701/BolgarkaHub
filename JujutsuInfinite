@@ -180,6 +180,17 @@ end
 })
 
 
+local Button = Tab:CreateButton({
+   Name = "Inf Mastery For Toji (Recommended with the Toji moveset)",
+   Callback = function()
+       while wait() do
+    game:GetService("Players").LocalPlayer.ReplicatedData.masteries["Heavenly Restriction"].level.Value = 9999
+    wait(0.2)
+    end
+   end
+})
+
+
 
 local Section = Tab:CreateSection("Gamepasses (BETA)")
 
@@ -231,26 +242,6 @@ screenGui:Destroy()
 
 --Мувсеты
   local Tab = Window:CreateTab("Movesets", nil) -- Title, Image
-
-local Section = Tab:CreateSection("Heavenly Restriction")
-
-local Button = Tab:CreateButton({
-   Name = "Toji (Heavenly Restriction) (No Manic Barrage)",
-   Callback = function()
-   while wait() do
-game:GetService("Players").LocalPlayer.ReplicatedData.masteries["Heavenly Restriction"].level.Value = 99999
-wait(0.2)
-end 
-   game:GetService("Players").LocalPlayer.ReplicatedData.heavenlyRestriction.Value = true
-   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.Z.Value = "Face Grab"
-   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.X.Value = "Blitz"
-   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.C.Value = "Pavement Slam"
-   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.V.Value = "Jutsushi Goroshi"
-   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.B.Value = "Bloodlust"
-   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.T.Value = "Super Senses"
-   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.Y.Value = "Shrapnel Barrage"
-   end,
-})
 
 local Section = Tab:CreateSection("Special Grades")
 
@@ -328,4 +319,18 @@ local Button = Tab:CreateButton({
    game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.B.Value = "Gambler Fever: Slot Slam"
    game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.T.Value = "Domain Expansion: Idle Death Gamble"
    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Toji (Heavenly Restriction) (No Manic Barrage)",
+   Callback = function()
+   game:GetService("Players").LocalPlayer.ReplicatedData.heavenlyRestriction.Value = true
+   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.Z.Value = "Face Grab"
+   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.X.Value = "Blitz"
+   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.C.Value = "Pavement Slam"
+   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.V.Value = "Jutsushi Goroshi"
+   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.B.Value = "Bloodlust"
+   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.T.Value = "Super Senses"
+   game:GetService("Players").LocalPlayer.ReplicatedData.techniques.innates.Y.Value = "Shrapnel Barrage"
+   end
 })
