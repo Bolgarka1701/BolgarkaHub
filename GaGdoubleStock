@@ -1,0 +1,81 @@
+local player = game:GetService("Players").LocalPlayer
+local gui = Instance.new("ScreenGui", player.PlayerGui)
+gui.Name = "SigmaToggleUI"
+
+-- Основная кнопка
+local button = Instance.new("TextButton", gui)
+button.Name = "SigmaToggle"
+button.Size = UDim2.new(0, 100, 0, 50)
+button.Position = UDim2.new(0.5, -50, 0.5, -25)
+button.Text = "Sigma: Off"
+button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.Font = Enum.Font.SourceSansBold
+button.TextSize = 18
+button.Active = true
+button.Draggable = true
+
+-- Крестик для закрытия
+local closeButton = Instance.new("TextButton", gui)
+closeButton.Name = "CloseButton"
+closeButton.Size = UDim2.new(0, 20, 0, 20)
+closeButton.Position = UDim2.new(1, -20, 0, 0)
+closeButton.Text = "X"
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Font = Enum.Font.SourceSansBold
+closeButton.TextSize = 14
+
+-- Инициализация значения
+_G.Sigma = false
+
+-- Функция для обновления внешнего вида кнопки
+local function updateButton()
+    if _G.Sigma then
+        button.Text = "Easter Shop Dupe: On"
+        button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    else
+        button.Text = "Easter Shop Dupe: Off"
+        button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    end
+end
+
+-- Функция для выполнения действий при включенном режиме
+local function runSigmaLoop()
+    while _G.Sigma do 
+        wait(0.001)
+        local Event = game:GetService("ReplicatedStorage").GameEvents.BuyEventShopStock
+        Event:FireServer("Candy Blossom")
+        Event:FireServer("Chocolate Carrot")
+        Event:FireServer("Chocolate Sprinkler")
+		Event:FireServer("Red Lollipop")
+		Event:FireServer("Easter Egg")
+		Event:FireServer("Candy Sunflower")
+    end
+end
+
+-- Запускаем корутину для обработки цикла
+local sigmaThread = coroutine.create(function()
+    while true do
+        if _G.Sigma then
+            runSigmaLoop()
+        end
+        wait(0.1) -- Небольшая задержка для уменьшения нагрузки
+    end
+end)
+coroutine.resume(sigmaThread)
+
+-- Обработчик клика по основной кнопке
+button.MouseButton1Click:Connect(function()
+    _G.Sigma = not _G.Sigma
+    updateButton()
+end)
+
+-- Обработчик клика по крестику
+closeButton.MouseButton1Click:Connect(function()
+    gui:Destroy()
+    _G.Sigma = false -- Отключаем функцию при закрытии GUI
+end)
+
+-- Первоначальное обновление
+updateButton()
