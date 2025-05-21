@@ -1,19 +1,28 @@
 local player = game:GetService("Players").LocalPlayer
 local gui = Instance.new("ScreenGui", player.PlayerGui)
 gui.Name = "SigmaToggleUI"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+if PlayerGui:FindFirstChild("SigmaToggle") then
+    PlayerGui.SigmaToggle:Destroy()
+end
 
 -- Основная кнопка
 local button = Instance.new("TextButton", gui)
 button.Name = "SigmaToggle"
 button.Size = UDim2.new(0, 100, 0, 50)
 button.Position = UDim2.new(0.5, -50, 0.5, -25)
-button.Text = "Sigma: Off"
+button.Text = "IF YOU READ THAT YOU ARE A FUCKING NIGGER"
 button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 button.TextColor3 = Color3.fromRGB(255, 255, 255)
 button.Font = Enum.Font.SourceSansBold
 button.TextSize = 18
 button.Active = true
 button.Draggable = true
+
 
 -- Крестик для закрытия
 local closeButton = Instance.new("TextButton", gui)
@@ -25,6 +34,7 @@ closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 closeButton.Font = Enum.Font.SourceSansBold
 closeButton.TextSize = 14
+closeButton.Parent = button
 
 -- Инициализация значения
 _G.Sigma = false
@@ -32,10 +42,10 @@ _G.Sigma = false
 -- Функция для обновления внешнего вида кнопки
 local function updateButton()
     if _G.Sigma then
-        button.Text = "Easter Shop Dupe: On"
+        button.Text = "Easter Shop Super Buyer: On"
         button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
     else
-        button.Text = "Easter Shop Dupe: Off"
+        button.Text = "Easter Shop Super Buyer: Off"
         button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
     end
 end
@@ -279,3 +289,59 @@ label.Font = Enum.Font.GothamBold
 label.TextSize = 14
 label.TextXAlignment = Enum.TextXAlignment.Left
 label.Parent = frame
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+if PlayerGui:FindFirstChild("Guide") then
+    PlayerGui.Guide:Destroy()
+end
+
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Guide"
+screenGui.ResetOnSpawn = false -- Чтобы UI не пропадал при респавне
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling -- Для правильного порядка отрисовки
+screenGui.Parent = PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Name = "MainFrame"
+frame.Size = UDim2.new(0, 445, 0, 100) -- Немного больше для лучшего отображения
+frame.Position = UDim2.new(0.2, -0, 0.0, 15)
+frame.AnchorPoint = Vector2.new(0.5, 0)
+frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Темный фон
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+frame.Selectable = true
+frame.Parent = screenGui
+
+local label = Instance.new("TextLabel")
+label.Name = "StatusLabel"
+label.Size = UDim2.new(1, 0, 1, 0)
+label.BackgroundTransparency = 1
+label.Text = [[ Guide: 
+ 1. It must be blood moon;
+ 2. Easter Stock MUST be available. 
+ Enjoy! 
+ (you can leave te dupe turned on, but it will kinda make ur game slower.]]
+label.TextColor3 = Color3.new(1, 1, 1)
+label.Font = Enum.Font.GothamBold
+label.TextSize = 14
+label.TextXAlignment = Enum.TextXAlignment.Left
+label.Parent = frame
+
+local closeButton = Instance.new("TextButton")
+closeButton.Name = "CloseButton"
+closeButton.Size = UDim2.new(0, 25, 0, 25)
+closeButton.Position = UDim2.new(0, 0, 0, 0)
+closeButton.AnchorPoint = Vector2.new(0, 0.5)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.BackgroundTransparency = 0 
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.new(1, 1, 1)
+closeButton.Font = Enum.Font.GothamBold
+closeButton.TextSize = 14
+closeButton.Parent = frame
