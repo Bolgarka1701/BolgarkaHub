@@ -238,3 +238,44 @@ end
 connectToChanges()
 
 print("Easter Stock UI успешно загружен!") -- Проверка что скрипт выполнился
+
+
+
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+if PlayerGui:FindFirstChild("Credits") then
+    PlayerGui.Credits:Destroy()
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Credits"
+screenGui.ResetOnSpawn = false -- Чтобы UI не пропадал при респавне
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling -- Для правильного порядка отрисовки
+screenGui.Parent = PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Name = "MainFrame"
+frame.Size = UDim2.new(0, 360, 0, 60) -- Немного больше для лучшего отображения
+frame.Position = UDim2.new(0.5, -0, 0.0, 0)
+frame.AnchorPoint = Vector2.new(0.5, 0)
+frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Темный фон
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+frame.Selectable = true
+frame.Parent = screenGui
+
+local label = Instance.new("TextLabel")
+label.Name = "StatusLabel"
+label.Size = UDim2.new(1, 0, 1, 0)
+label.BackgroundTransparency = 1
+label.Text = "Made by Smelly Tatsumaki Feet😘, you can drag all the UIs."
+label.TextColor3 = Color3.new(1, 1, 1)
+label.Font = Enum.Font.GothamBold
+label.TextSize = 14
+label.TextXAlignment = Enum.TextXAlignment.Left
+label.Parent = frame
